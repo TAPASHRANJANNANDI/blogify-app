@@ -5,7 +5,7 @@ pipeline {
         DOCKER_IMAGE = "tapashranjannandi/node-app-blogify:latest"
         REGISTRY_CREDENTIALS = credentials('dockerhub-credentials') // DockerHub creds
         GITHUB_REPO = 'https://github.com/TAPASHRANJANNANDI/blogify-app.git'     // Replace if different
-        BRANCH = 'main'                                              // Or 'master'
+        BRANCH = 'master'                                              // Or 'master'
     }
 
     stages {
