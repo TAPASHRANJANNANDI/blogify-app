@@ -19,7 +19,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 echo "Building Docker image..."
-                sh 'docker build -t node-app:latest ./blogify/'
+                sh 'docker build -t node-app:latest .'
             }
         }
 
@@ -46,8 +46,8 @@ pipeline {
             steps {
                 echo "Deploying application to Kubernetes cluster..."
                 sh '''
-                    kubectl apply -f blogify/kubernetes/application/deployment.yaml
-                    kubectl apply -f blogify/kubernetes/application/service.yaml
+                    kubectl apply -f kubernetes/application/deployment.yaml
+                    kubectl apply -f kubernetes/application/service.yaml
                 '''
             }
         }
