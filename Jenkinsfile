@@ -53,6 +53,7 @@ stages {
 		kubectl apply -f kubernetes/database/deployment.yaml --validate=false
                 kubectl apply -f kubernetes/application/deployment.yaml --validate=false
                 kubectl apply -f kubernetes/application/service.yaml --validate=false
+		kubectl rollout restart deployment blog-app
             '''
         }
     }
