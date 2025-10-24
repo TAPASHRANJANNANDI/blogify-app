@@ -58,6 +58,27 @@ stages {
             '''
         }
     }
+stage('Port Forwarding') {
+    steps {
+        echo "Starting port-forward in the background..."
+        sh '''
+            # Kill previous port-forward if exists
+            if [ -f port-forward.pid ]; then
+                PID=$(cat port-forward.pid)
+                if ps -p $PID > /dev/null; then
+                    kill $PID
+                    echo "Killed previous port-forward (PID $PID)"
+                fi
+            fi
+
+            # Start new port-forward in background
+            nohup kubectl port-forward svc/blog-app 8000:8000 > port-forward.log 2>&1 &
+            echo $! > port-forward.pid
+            echo "Port-forward started with PID $(cat port-forward.pid)"
+        '''
+    }
+}
+
 }
 
 post {
