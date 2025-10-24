@@ -48,6 +48,9 @@ stages {
         steps {
             echo "Deploying application to Kubernetes cluster..."
             sh '''
+		kubectl apply -f kubernetes/database/pv.yaml --validate=false
+		kubectl apply -f kubernetes/database/pvc.yaml --validate=false
+		kubectl apply -f kubernetes/database/deployment.yaml --validate=false
                 kubectl apply -f kubernetes/application/deployment.yaml --validate=false
                 kubectl apply -f kubernetes/application/service.yaml --validate=false
             '''
