@@ -17,19 +17,20 @@ spec:
              image: tapashranjannandi/node-app-blogify:latest
              ports: 
                 - containerPort: 8000
-             env: 
-                - name: MONGO_URL
-                  value: "mongodb://mongo-service:27017/test"
-            livenessProbe: 
+             livenessProbe:
               httpGet:
                 path: /
                 port: 8000
               initialDelaySeconds: 2
               periodSeconds: 5
-            readinessProbe:
+             readinessProbe:
               httpGet:
                 path: /
                 port: 8000
               initialDelaySeconds: 5
               periodSeconds: 5
               successThreshold: 1
+             env: 
+                - name: MONGO_URL
+                  value: "mongodb://mongo-service:27017/test"
+        
