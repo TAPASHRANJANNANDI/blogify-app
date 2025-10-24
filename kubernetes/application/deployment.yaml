@@ -20,4 +20,16 @@ spec:
              env: 
                 - name: MONGO_URL
                   value: "mongodb://mongo-service:27017/test"
-
+            livenessProbe: 
+              httpGet:
+                path: /
+                port: 8000
+              initialDelaySeconds: 2
+              periodSeconds: 5
+            readinessProbe:
+              httpGet:
+                path: /
+                port: 8000
+              initialDelaySeconds: 5
+              periodSeconds: 5
+              successThreshold: 1
